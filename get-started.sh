@@ -17,6 +17,7 @@ then
 fi
 
 QUICKSTART_NAME=${4:-"get-started-aws-quickstart"}
+IMAGE="${5:-atlas-aws}"
 echo "Executing ... "
 echo "Launching new quickstart stack name: ${QUICKSTART_NAME}"
 
@@ -24,7 +25,7 @@ docker run -it --rm \
     -v $HOME/.aws:/root/.aws \
     -v get-started-aws:/cache \
     -v "$(pwd)":/workspace \
-    -w /workspace/atlas-aws atlas-aws \
+    -w /workspace/atlas-aws "${IMAGE}" \
      "cd /quickstart-mongodb-atlas/; \
      ls -l .; \
      export ATLAS_PUBLIC_KEY=${PUBLIC_KEY}; \

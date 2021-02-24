@@ -3,11 +3,12 @@
 echo "Creating get-started-aws Docker volume ... "
 docker volume create get-started-aws
 echo "Setting up environment ..."
+IMAGE="${1:-atlas-aws}"
 docker run --rm \
     -v $HOME/.aws:/root/.aws \
     -v get-started-aws:/cache \
     -v "$(pwd)":/workspace \
-    -w /workspace/atlas-aws atlas-aws \
+    -w /workspace/atlas-aws "${IMAGE}" \
      "ls -l /; \
      ls -l /quickstart-mongodb-atlas-resources/; \
      cd /quickstart-mongodb-atlas-resources/cfn-resources/; \
