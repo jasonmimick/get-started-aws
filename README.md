@@ -41,9 +41,10 @@ In order to execute the code example, you need to have:
   ./get-setup.sh jmimick/atlas-aws
   ```
 
-  Optionally, to set the region:
+  Changing the region to deploy into is support by passing your default AWS cli config into the get-started Docker container. So you can run the deploy in another region with the following commands:
   ```
-  AWS_DEFAULT_REGION=eu-west-3 ./get-setup.sh <image>
+  aws configure set region eu-west-3
+  ./get-setup.sh jmimick/atlas-aws
   ```
   Note this step can take up to 45 minutes to run.
   Run this step once in each region you wish to use.
