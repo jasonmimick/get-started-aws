@@ -6,7 +6,24 @@ Repository to help getting started with using MongoDB Atlas with AWS CloudFormat
 
 This Get-Started project uses the [MongoDB Atlas AWS Quick Start]() and the [MongoDB Atlas CloudFormation Resources]().
 
+The project will deploy the MongoDB Atlas AWS Quick Start.
+The Quick Start provisions complete MongoDB Atlas deployments through CloudFormation using official MongoDB Atlas AWS CloudFormation Resource Types.
+
+After you `get-started.sh` with this Get-Started project you will have a complete MongoDB Atlas deployment managed through AWS CloudFormaiton. This includes:
+
+    * 1 Project
+    * 1 M10 MongoDB Atlas Cluster
+    * 1 AWS IAM Role
+    * MongoDB Atlas Database Users via AWS IAM Integration
+    * 1 Project Ip Access List entry
+    * VPC Peering (optional) [TODO/ need add this option to get-started]
+
 ## Pre-requisites 
+
+### AWS Tooling
+
+In order to use this Get-Started project you need to install the AWS cli on your machine.
+You can download and install from: https://docs.aws.amazon.com/cli/latest/userguide/install-cliv2.html
 
 ### Docker 
 
@@ -50,10 +67,34 @@ In order to execute the code example, you need to have:
   Run this step once in each region you wish to use.
 
 3. Execute the helper shell starter script by providing the Quick Start name. The output from `get-setup.sh` helper script will inform you of the details for your new MongoDB Atlas deployment, including AWS AIM Role and Cluster connection string information for you apps. Note this step takes 7-10 minutes. 
+
   ```
-  ./get-started.sh PUBLIC_KEY PRIVATE_KEY ORG_ID QUICKSTART_NAME <DOCKER_IMAGE>
+  ./get-started.sh PUBLIC_KEY PRIVATE_KEY ORG_ID <GETSTARTED_NAME> <DOCKER_IMAGE>
   ```
-Once successful, you should be able to access your new deployment through the AWS console, the Atlas console or even the clis.
+
+  The `GETSTARTED_NAME` parameter is optional and defaults to `get-started-aws-quickstart`.
+
+  Note - until source repos are public use this specfic image (change GETSTARTED_NAME to your own choosing):
+
+  ```
+  ./get-started.sh PUBLIC_KEY PRIVATE_KEY ORG_ID get-started-aws-quickstart jmimick/atlas-aws
+  ```
+
+  Once successful, you should be able to access your new deployment through the AWS console, the Atlas console or even the clis.
+
+## Connecting to your cluster
+
+You can see the connection information in the AWS CloudFormation stack output.
+
+```bash
+GETSTARTED_NAME="get-started-aws-quickstart"
+MDB=$(aws cloudformation list-exports | \
+ jq -r --arg stackname "${GETSTARTED_NAME}" \
+ '.Exports[] | select(.Name==$stackname+"-ClusterSrvAddress") | .Value')
+echo "Found stack:${GETSTARTED_NAME} with ClusterSrvAddress: ${MDB}"
+```
+
+_Note_ This example requires the `jq` tool. See: https://stedolan.github.io/jq/download/
 
 ## Tear Down 
 
@@ -61,7 +102,7 @@ How to remove the environment setup (deleting traces of this get-started project
 
 * Delete the Quick Start stack using the helper script or you can do this in the AWS Web Console or cli yourself.
   ```
-  ./teardown.sh <Quick Start-Name>
+  ./teardown.sh <GETSTARTED_NAME>
   ```
 
 * Terminate the `get-started.sh` process if it's running. This is to stop the web service on `localhost:3000`.
