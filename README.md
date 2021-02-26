@@ -9,14 +9,16 @@ This Get-Started project uses the [MongoDB Atlas AWS Quick Start]() and the [Mon
 The project will deploy the MongoDB Atlas AWS Quick Start.
 The Quick Start provisions complete MongoDB Atlas deployments through CloudFormation using official MongoDB Atlas AWS CloudFormation Resource Types.
 
-After you `get-started.sh` with this Get-Started project you will have a complete MongoDB Atlas deployment managed through AWS CloudFormaiton. This includes:
+After you `get-started.sh` with this Get-Started project you will have a complete MongoDB Atlas deployment managed through AWS CloudFormation. This includes:
 
-    * 1 Project
-    * 1 M10 MongoDB Atlas Cluster
-    * 1 AWS IAM Role
-    * MongoDB Atlas Database Users via AWS IAM Integration
-    * 1 Project Ip Access List entry
-    * VPC Peering (optional) [TODO/ need add this option to get-started]
+* 1 Project
+* 1 M10 MongoDB Atlas Cluster
+* 1 AWS IAM Role
+* 1 MongoDB Atlas Database User (Type/AWS IAM Role)
+* 1 Project Ip Access List entry
+* VPC Peering (optional) [TODO/ need add this option to get-started]
+
+The outputs include a lambda ready IAM Role and connection string to your new MongoDB Atlas Cluster.
 
 ## Pre-requisites 
 
