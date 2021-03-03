@@ -15,5 +15,5 @@ docker run --rm \
      cd /quickstart-mongodb-atlas-resources/cfn-resources/; \
      ls -l .; \
      echo 'Registering and deploying MongoDB Atlas AWS CloudFormation Resources, this may take a while ...';
-     CFN_FLAGS="--verbose --set-default --region ${REGION}" SUBMIT_ONLY=true ./cfn-submit-helper.sh
+     CFN_FLAGS='--verbose --set-default --region ${REGION}' SUBMIT_ONLY=true ./cfn-submit-helper.sh
      echo 'You can now execute get-started.sh <Quickstart_Name>' and start using the MongoDB Atlas CFN Resources!"
