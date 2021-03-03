@@ -4,6 +4,7 @@ echo "Creating get-started-aws Docker volume ... "
 docker volume create get-started-aws
 echo "Setting up environment ..."
 IMAGE="${1:-atlas-aws}"
+REGION="${2:-us-east-1}"
 docker run --rm \
     -v $HOME/.aws:/root/.aws \
     -v get-started-aws:/cache \
@@ -14,5 +15,5 @@ docker run --rm \
      cd /quickstart-mongodb-atlas-resources/cfn-resources/; \
      ls -l .; \
      echo 'Registering and deploying MongoDB Atlas AWS CloudFormation Resources, this may take a while ...';
-     SUBMIT_ONLY=true ./cfn-submit-helper.sh
-     echo 'You can now execute get-started.sh <Quickstart_Name>';"
+     CFN_FLAGS="--verbose --set-default --region ${REGION}" SUBMIT_ONLY=true ./cfn-submit-helper.sh
+     echo 'You can now execute get-started.sh <Quickstart_Name>' and start using the MongoDB Atlas CFN Resources!"

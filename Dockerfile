@@ -26,7 +26,8 @@ RUN pip3 install cloudformation-cli-go-plugin
 ENV WORKSPACE /workspace
 RUN mkdir -p -m 0600 ~/.ssh && ssh-keyscan github.com >> ~/.ssh/known_hosts
 
-RUN --mount=type=ssh,id=github git clone --single-branch --branch develop git@github.com:aws-quickstart/quickstart-mongodb-atlas.git
+#RUN --mount=type=ssh,id=github git clone --single-branch --branch develop git@github.com:aws-quickstart/quickstart-mongodb-atlas.git
+RUN --mount=type=ssh,id=github git clone --single-branch --branch develop git@github.com:jasonmimick/quickstart-mongodb-atlas.git
 RUN --mount=type=ssh,id=github git clone git@github.com:aws-quickstart/quickstart-mongodb-atlas-resources.git
 
 # copy the repository form the previous image

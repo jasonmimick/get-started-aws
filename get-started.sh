@@ -28,6 +28,7 @@ docker run -it --rm \
     -w /workspace/atlas-aws "${IMAGE}" \
      "cd /quickstart-mongodb-atlas/; \
      ls -l .; \
+     cat ./scripts/launch-new-quickstart.sh; \
      export ATLAS_PUBLIC_KEY=${PUBLIC_KEY}; \
      export ATLAS_PRIVATE_KEY=${PRIVATE_KEY}; \
      export ATLAS_ORG_ID=${ORG_ID}; \
